@@ -1,6 +1,10 @@
 {
   "name": "sketch-codelight",
   "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/somebee/sketch-codelight.git"
+  },
   "engines": {
     "sketch": ">=3.0"
   },
