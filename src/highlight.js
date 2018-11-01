@@ -1,7 +1,5 @@
 import sketch from 'sketch'
-import {highlight,getLanguage} from './test.js'
-// documentation: https://developer.sketchapp.com/reference/api/
-// import monarch with templates
+import {highlight,getLanguage} from './service'
 
 function run(layer,isDark){
 
@@ -12,7 +10,6 @@ function run(layer,isDark){
 
 	var doc = context.document;
 	var userInput = doc.askForUserInput_initialValue("Language", "javascript");
-	console.log(userInput);
 	var lang = getLanguage(userInput);
 
 	if(!lang){
@@ -45,6 +42,5 @@ export default function() {
 	sketch.UI.message("It's alive 🙌");
 	// Select a Text Layer with at least 4 characters
 	var selection = context.selection, textLayer = selection.firstObject();
-	console.log(textLayer);
 	run(textLayer,true);
 }

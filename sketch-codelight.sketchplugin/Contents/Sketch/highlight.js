@@ -217,11 +217,10 @@ module.exports = g;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sketch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sketch */ "sketch");
 /* harmony import */ var sketch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sketch__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _test_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./test.js */ "./src/test.js");
-/* harmony import */ var _test_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_test_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./service */ "./src/service.js");
+/* harmony import */ var _service__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_service__WEBPACK_IMPORTED_MODULE_1__);
 
- // documentation: https://developer.sketchapp.com/reference/api/
-// import monarch with templates
+
 
 function run(layer, isDark) {
   if (!(layer instanceof MSTextLayer)) {
@@ -231,15 +230,14 @@ function run(layer, isDark) {
 
   var doc = context.document;
   var userInput = doc.askForUserInput_initialValue("Language", "javascript");
-  console.log(userInput);
-  var lang = Object(_test_js__WEBPACK_IMPORTED_MODULE_1__["getLanguage"])(userInput);
+  var lang = Object(_service__WEBPACK_IMPORTED_MODULE_1__["getLanguage"])(userInput);
 
   if (!lang) {
     return sketch__WEBPACK_IMPORTED_MODULE_0___default.a.UI.message("Couldn't find highlighter for " + userInput);
   }
 
   var content = layer.stringValue();
-  var tokens = Object(_test_js__WEBPACK_IMPORTED_MODULE_1__["highlight"])(content, userInput, {
+  var tokens = Object(_service__WEBPACK_IMPORTED_MODULE_1__["highlight"])(content, userInput, {
     json: true,
     dark: isDark
   });
@@ -269,7 +267,6 @@ function run(layer, isDark) {
 
   var selection = context.selection,
       textLayer = selection.firstObject();
-  console.log(textLayer);
   run(textLayer, true);
 });
 
@@ -706,10 +703,10 @@ exports.language = {
 
 /***/ }),
 
-/***/ "./src/monaco/imba/index.js":
-/*!**********************************!*\
-  !*** ./src/monaco/imba/index.js ***!
-  \**********************************/
+/***/ "./src/monaco/imba.js":
+/*!****************************!*\
+  !*** ./src/monaco/imba.js ***!
+  \****************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -1421,7 +1418,7 @@ var imba = exports.imba = {
   extensions: ['.imba'],
   aliases: ['Imba', 'imba'],
   mimetypes: ['application/imba'],
-  language: __webpack_require__(/*! ./imba */ "./src/monaco/imba/index.js")
+  language: __webpack_require__(/*! ./imba */ "./src/monaco/imba.js")
 };
 var ruby = exports.ruby = {
   id: 'ruby',
@@ -8417,10 +8414,10 @@ exports.parseTokenTheme = parseTokenTheme;
 
 /***/ }),
 
-/***/ "./src/test.js":
-/*!*********************!*\
-  !*** ./src/test.js ***!
-  \*********************/
+/***/ "./src/service.js":
+/*!************************!*\
+  !*** ./src/service.js ***!
+  \************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
