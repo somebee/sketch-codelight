@@ -1,5 +1,6 @@
 {
   "name": "sketch-codelight",
+  "description": "Highlight code inside Text layers in Sketch",
   "version": "0.1.0",
   "repository": {
     "type": "git",
