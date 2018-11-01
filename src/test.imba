@@ -39,11 +39,6 @@ export def styles
 var registeredLanguages = {}
 
 export def getLanguage lang
-	if $web$ and !styleElement
-		styleElement = document.createElement('style')
-		styleElement:innerHTML = css.join("\n")
-		document:head.appendChild(styleElement)
-	
 	lang = aliases[lang] or lang
 	
 	if registeredLanguages[lang]
@@ -135,7 +130,7 @@ export def tokenize lang, code, options = {}
 	
 	return [code,lines.join('\n'),types]
 
-export def jsonify code, lineCount = 30
+export def jsonify code, o = {}
 	var out = ""
 	
 	var raw = code[0]
@@ -146,7 +141,8 @@ export def jsonify code, lineCount = 30
 	var start = 0
 	var l = tokens:length
 	var lines = raw.split('\n')
-	
+	var theme = o:dark ? colors:dark : colors:light
+
 	var out = []
 	
 	for line,li in lines
@@ -164,7 +160,7 @@ export def jsonify code, lineCount = 30
 				out.push([content,color])
 			else
 				type = code
-				color = colors:dark[code]
+				color = theme[code]
 		out.push(['\n',{}])
 	
 	return out
@@ -209,9 +205,4 @@ export def highlight code, lang, options = {}
 		return code 
 	options:theme ?= theme
 	var tokens = tokenize(lang,code,options)
-	return options:json ? jsonify(tokens) : htmlify(tokens)
-
-def test code
-	highlight(code,'imba',json: true)
-
-console.log JSON.stringify(test("var hello = 1;"))
+	return options:json ? jsonify(tokens,options) : htmlify(tokens)
