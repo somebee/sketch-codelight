@@ -9,7 +9,7 @@ function run(layer,isDark){
 	}
 
 	var doc = context.document;
-	var userInput = doc.askForUserInput_initialValue("Language", "javascript");
+	var userInput = sketch.UI.getStringFromUser("Language", "javascript")
 	var lang = getLanguage(userInput);
 
 	if(!lang){
